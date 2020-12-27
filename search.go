@@ -168,7 +168,7 @@ func ChangeUmlauteAll(iStr string) string {
 	return rStr
 }
 
-//GetMovieDetail liefert Detailinfos zum Film
+//GetMovieDetail provides detailed information about the film
 func GetMovieDetail(apiKey string, langu string, movieID int) (MovieDetailResponse, error) {
 	var myurl string
 	var dst MovieDetailResponse
