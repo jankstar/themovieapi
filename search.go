@@ -198,7 +198,7 @@ func GetMovieDetail(apiKey string, langu string, movieID int) (MovieDetailRespon
 
 //GetSearchMovie returns the search result for query in the form SearchMovieResponse
 //the apikey and the language must be specified
-func GetSearchMovie(apiKey string, langu string, query string) (SearchMovieResponse, error) {
+func GetSearchMovie(apiKey string, langu string, query string, page int) (SearchMovieResponse, error) {
 	var myurl string
 	var dst SearchMovieResponse
 	dst.Page = 0
@@ -209,8 +209,11 @@ func GetSearchMovie(apiKey string, langu string, query string) (SearchMovieRespo
 	if langu == "" {
 		langu = "de-DE"
 	}
+	if page <= 0 {
+		page = 1
+	}
 
-	myurl = urlMovie + "?api_key=" + apiKey + "&language=" + langu + "&query=" + url.QueryEscape(ChangeUmlauteAll(query)) + "&page=1"
+	myurl = urlMovie + "?api_key=" + apiKey + "&language=" + langu + "&query=" + url.QueryEscape(ChangeUmlauteAll(query)) + "&page=" + strconv.Itoa(page)
 
 	res, err1 := http.Get(myurl)
 	if err1 != nil || res.StatusCode != 200 {
@@ -231,7 +234,7 @@ func GetSearchMovie(apiKey string, langu string, query string) (SearchMovieRespo
 
 //GetSearchTV returns the search result for query in the form SearchTVResponse
 //you have to specify the apikey and the language
-func GetSearchTV(apiKey string, langu string, query string) (SearchTVResponse, error) {
+func GetSearchTV(apiKey string, langu string, query string, page int) (SearchTVResponse, error) {
 	var myurl string
 	var dst SearchTVResponse
 	dst.Page = 0
@@ -242,7 +245,10 @@ func GetSearchTV(apiKey string, langu string, query string) (SearchTVResponse, e
 	if langu == "" {
 		langu = "de-DE"
 	}
-	myurl = urlTV + "?api_key=" + apiKey + "&language=" + langu + "&query=" + url.QueryEscape(ChangeUmlauteAll(query)) + "&page=1"
+	if page <= 0 {
+		page = 1
+	}
+	myurl = urlTV + "?api_key=" + apiKey + "&language=" + langu + "&query=" + url.QueryEscape(ChangeUmlauteAll(query)) + "&page=" + strconv.Itoa(page)
 
 	res, err1 := http.Get(myurl)
 	if err1 != nil || res.StatusCode != 200 {

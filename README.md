@@ -11,8 +11,8 @@ This library uses the API 3 "https://developers.themoviedb.org/3/getting-started
 
 The following functions are implemented:
 ```
-func GetSearchMovie(apiKey string, langu string, query string) (SearchMovieResponse, error) {} 
-func GetSearchTV(apiKey string, langu string, query string) (SearchTVResponse, error) {}
+func GetSearchMovie(apiKey string, langu string, query string, page int) (SearchMovieResponse, error) {} 
+func GetSearchTV(apiKey string, langu string, query string, page int) (SearchTVResponse, error) {}
 func GetMovieDetail(apiKey string, langu string, movieID int) (MovieDetailResponse, error) {}
 func GetGengre(apiKey string, langu string) (TypGengres, error) {}
 ```
