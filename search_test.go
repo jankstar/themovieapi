@@ -127,6 +127,7 @@ func TestGetSearchMovie(t *testing.T) {
 		apiKey string
 		langu  string
 		query  string
+		page   int
 	}
 	type tyResults []struct {
 		Popularity       float32 `json:"popularity,omitempty"`
@@ -155,6 +156,7 @@ func TestGetSearchMovie(t *testing.T) {
 				apiKey: "",
 				langu:  "de-DE",
 				query:  "Sing",
+				page:   1,
 			},
 			want: SearchMovieResponse{
 				Results: tyResults{{
@@ -175,7 +177,7 @@ func TestGetSearchMovie(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetSearchMovie(tt.args.apiKey, tt.args.langu, tt.args.query)
+			got, err := GetSearchMovie(tt.args.apiKey, tt.args.langu, tt.args.query, tt.args.page)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetSearchMovie() error = %v, wantErr %v", err, tt.wantErr)
 				return
