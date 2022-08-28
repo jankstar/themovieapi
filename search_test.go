@@ -155,12 +155,12 @@ func TestGetSearchMovie(t *testing.T) {
 			args: args{
 				apiKey: "",
 				langu:  "de-DE",
-				query:  "Sing",
+				query:  "Sing 2",
 				page:   1,
 			},
 			want: SearchMovieResponse{
 				Results: tyResults{{
-					OriginalTitle: "Sing",
+					OriginalTitle: "Sing 2",
 				}},
 			},
 			wantErr: false,
