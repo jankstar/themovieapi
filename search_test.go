@@ -67,7 +67,7 @@ func Test_ChangeUmlauteAll(t *testing.T) {
 	}{
 		{"Testet german umlaute",
 			args{"Die Schöne und das Biest"},
-			"Die Schoene und das Biest"},
+			"Die Schone und das Biest"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
