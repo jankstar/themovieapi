@@ -1,4 +1,4 @@
-//Package themovieapi Includes functions to access TheMovie API
+// Package themovieapi Includes functions to access TheMovie API
 // for movies and TV
 package themovieapi
 
@@ -18,7 +18,7 @@ const (
 	urlImage       string = "https://image.tmdb.org/t/p"
 )
 
-//SearchMovieResponse the return structure from the get /search/movie
+// SearchMovieResponse the return structure from the get /search/movie
 type SearchMovieResponse struct {
 	Page         int `json:"page,omitempty"`
 	TotalResults int `json:"total_results,omitempty"`
@@ -41,7 +41,7 @@ type SearchMovieResponse struct {
 	} `json:"results,omitempty"`
 }
 
-//MovieDetailResponse the return values to the detail of a movie
+// MovieDetailResponse the return values to the detail of a movie
 type MovieDetailResponse struct {
 	Adult               bool   `json:"adult,omitempty"`
 	BackdropPath        string `json:"backdrop_path,omitempty"`
@@ -89,7 +89,7 @@ type MovieDetailResponse struct {
 	VoteCount   int     `json:"vote_count,omitempty"`
 }
 
-//SearchTVResponse the return structure from the get /search/tv
+// SearchTVResponse the return structure from the get /search/tv
 type SearchTVResponse struct {
 	Page         int `json:"page,omitempty"`
 	TotalResults int `json:"total_results,omitempty"`
@@ -111,18 +111,18 @@ type SearchTVResponse struct {
 	} `json:"results,omitempty"`
 }
 
-//EleGenres  Genre element
+// EleGenres  Genre element
 type EleGenres struct {
 	ID   int    `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
 }
 
-//TypGengres Genre table
+// TypGengres Genre table
 type TypGengres struct {
 	Genres []EleGenres `json:"genres,omitempty"`
 }
 
-//ChangeUmlauteSingle replaces in a string an umlaut
+// ChangeUmlauteSingle replaces in a string an umlaut
 func ChangeUmlauteSingle(iStr string, fromChar string, toChar string, runeLen int) string {
 	rStr := iStr
 	for strings.Contains(rStr, fromChar) {
@@ -139,26 +139,26 @@ func ChangeUmlauteSingle(iStr string, fromChar string, toChar string, runeLen in
 	return rStr
 }
 
-//ChangeUmlauteAll replaces all umlauts in a string
+// ChangeUmlauteAll replaces all umlauts in a string for searching
 func ChangeUmlauteAll(iStr string) string {
 	var convert = []struct {
 		fromChar string
 		toChar   string
 		runeLen  int
 	}{
-		{"Ä", "Ae", 2},
-		{"Ö", "Oe", 2},
-		{"Ü", "Ue", 2},
-		{"ä", "ae", 2},
-		{"ö", "oe", 2},
-		{"ü", "ue", 2},
-		{"ß", "ss", 2},
-		{"\x41\xcc\x88", "Ae", 3},
-		{"\x61\xcc\x88", "ae", 3},
-		{"\x4f\xcc\x88", "Oe", 3},
-		{"\x6f\xcc\x88", "oe", 3},
-		{"\x55\xcc\x88", "Ue", 3},
-		{"\x75\xcc\x88", "ue", 3}}
+		{"Ä", "A", 2},
+		{"Ö", "O", 2},
+		{"Ü", "U", 2},
+		{"ä", "a", 2},
+		{"ö", "o", 2},
+		{"ü", "u", 2},
+		{"ß", "s", 2},
+		{"\x41\xcc\x88", "A", 3},
+		{"\x61\xcc\x88", "a", 3},
+		{"\x4f\xcc\x88", "O", 3},
+		{"\x6f\xcc\x88", "o", 3},
+		{"\x55\xcc\x88", "U", 3},
+		{"\x75\xcc\x88", "u", 3}}
 
 	rStr := iStr
 
@@ -168,7 +168,7 @@ func ChangeUmlauteAll(iStr string) string {
 	return rStr
 }
 
-//GetMovieDetail provides detailed information about the film
+// GetMovieDetail provides detailed information about the film
 func GetMovieDetail(apiKey string, langu string, movieID int) (MovieDetailResponse, error) {
 	var myurl string
 	var dst MovieDetailResponse
@@ -196,8 +196,8 @@ func GetMovieDetail(apiKey string, langu string, movieID int) (MovieDetailRespon
 	return dst, nil
 }
 
-//GetSearchMovie returns the search result for query in the form SearchMovieResponse
-//the apikey and the language must be specified
+// GetSearchMovie returns the search result for query in the form SearchMovieResponse
+// the apikey and the language must be specified
 func GetSearchMovie(apiKey string, langu string, query string, year string, page int) (SearchMovieResponse, error) {
 	var myurl string
 	var dst SearchMovieResponse
@@ -240,8 +240,8 @@ func GetSearchMovie(apiKey string, langu string, query string, year string, page
 	return dst, nil
 }
 
-//GetSearchTV returns the search result for query in the form SearchTVResponse
-//you have to specify the apikey and the language
+// GetSearchTV returns the search result for query in the form SearchTVResponse
+// you have to specify the apikey and the language
 func GetSearchTV(apiKey string, langu string, query string, page int) (SearchTVResponse, error) {
 	var myurl string
 	var dst SearchTVResponse
@@ -275,7 +275,7 @@ func GetSearchTV(apiKey string, langu string, query string, page int) (SearchTVR
 	return dst, nil
 }
 
-//GetGengre provide the genre table
+// GetGengre provide the genre table
 func GetGengre(apiKey string, langu string) (TypGengres, error) {
 	var myurl string
 	var dst TypGengres
@@ -302,7 +302,7 @@ func GetGengre(apiKey string, langu string) (TypGengres, error) {
 	return dst, nil
 }
 
-//GetImageURL returns the complete URL from the image path and the resolution
+// GetImageURL returns the complete URL from the image path and the resolution
 func GetImageURL(imagePath string, size string) string {
 	if imagePath == "" {
 		return ""
